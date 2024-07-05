@@ -4,7 +4,18 @@
 
 @section('content')
     <h1>Lista de clientes</h1>
-    
+
+    @if (session("correcto"))
+    <div class="alert alert-success">{{session("correcto")}}</div>
+    @endif
+    @if (session("incorrecto"))
+    <div class="alert alert-danger">{{session("incorrecto")}}</div>
+    @endif
+    <script>
+        var preg = function() { var not = confirm("estas seguro de eliminar?");
+        return not; }; 
+    </script>
+
     <div class="p-5 table-responsive">
         <table class="table table-striped table-bordered table-hover">
             <!-- Botón para abrir el modal de agregar cliente -->

@@ -26,13 +26,15 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre de la marca</th>
+                    <th>Id del proveedor</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($datos as $item)
+                @foreach ($datosM as $item)
                 <tr>
                     <td>{{ $item->id_marca }}</td>
                     <td>{{ $item->nombre }}</td>
+                    <td>{{ $item->id_proveedor }}</td>
                     <td>
                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modificarMarcaModal{{ $item->id_marca }}">Modificar</button>
                         <a href="{{route('marcas.delete', $item->id_marca)}}" onclick="return preg()" class="btn btn-danger">Eliminar</a>
@@ -57,6 +59,15 @@
                                     <div class="form-group">
                                         <label for="nombre">Nombre de la Marca</label>
                                         <input type="text" class="form-control" id="nombre_marca" name="nombre_marca" value="{{ $item->nombre }}" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="id_proveedor">Proveedor de la marca</label>
+                                        <select class="form-control" id="id_proveedor" name="id_proveedor" required>
+                                            <option value="">Seleccione un proveedor</option>
+                                            @foreach($proveedores as $proveedor)
+                                            <option value="{{ $proveedor->id_proveedor }}">{{ $proveedor->nombre }}</option>                                @endforeach
+                                        </select>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -86,11 +97,20 @@
                         <div class="form-group">
                             <label for="nombre">Nombre de la marca</label>
                             <input type="text" class="form-control" id="nombre_marca" name="nombre_marca" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_proveedor">Proveedor de la marca</label>
+                            <select class="form-control" id="id_proveedor" name="id_proveedor" required>
+                                <option value="">Seleccione un proveedor</option>
+                                @foreach($proveedores as $proveedor)
+                                <option value="{{ $proveedor->id_proveedor }}">{{ $proveedor->nombre }}</option>                                @endforeach
+                            </select>
+                        </div>
                         <div class="modal-footer">
+                            
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             <button type="submit" class="btn btn-primary"><a href="/marcas"></a>Guardar</button>
 
-                        </div>
                     </form>
                 </div>
             </div>

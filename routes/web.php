@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\Crudcontroller;
 use App\Http\Controllers\CrudcontrollerM;
+use App\Http\Controllers\CrudcontrollerP;
+use App\Http\Controllers\Crudcontrollerpp;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,9 +33,21 @@ Route::post('/marcas_modif', [CrudcontrollerM::class, "update"])->name('marcas.u
 //ruta para eliinar marcas
 Route::get('/marcas_elim-{id_marca}', [CrudcontrollerM::class, "delete"])->name('marcas.delete');
 
-Route::get('/proveedores', function () {
-    return view('proveedores.prov');
-})->name('proveedores');
-Route::get('/productos', function () {
-    return view('productos.produc');
-})->name('productos');
+Route::get('/proveedores', [Crudcontrollerpp::class, "prov"])->name('proveedores');
+//ruta para crear clientes
+Route::post('/proveedores_registrar', [Crudcontrollerpp::class, "create"])->name('prov.create');
+//ruta para modificar clientes
+Route::post('/proveedores_modif', [Crudcontrollerpp::class, "update"])->name('prov.update');
+//ruta para eliinar clientes
+Route::get('/proveedores_elim-{id_proveedor}', [Crudcontrollerpp::class, "delete"])->name('prov.delete');
+
+
+Route::get('/productos', [CrudcontrollerP::class, "produc"])->name('productos');
+//ruta para crear productos
+Route::post('/productos_registrar', [CrudcontrollerP::class, "create"])->name('produc.create');
+//ruta para modificar clientes
+Route::post('/productos_modif', [CrudcontrollerP::class, "update"])->name('produc.update');
+//ruta para eliinar clientes
+Route::get('/productos_elim-{id_producto}', [CrudcontrollerP::class, "delete"])->name('produc.delete');
+
+
